@@ -2,18 +2,19 @@ const Whoami = () => {
   return (
     <div className="flex flex-col items-start px-4 space-y-6 text-left max-w-4xl mx-auto">
 
-      {/* Galleria di immagini responsive */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 mb-6 w-full">
+      {/* Galleria di immagini con wrap */}
+      <div className="flex flex-wrap gap-4 mt-4 mb-6 w-full justify-start">
         <img
           src="/me.png"
           alt="ivan_maieli"
-          className="w-full aspect-[3/4] object-cover rounded-lg shadow-lg"
+          className="flex-1 min-w-[120px] max-w-[200px] aspect-[3/4] object-cover"
         />
         <img
           src="/me2.png"
           alt="ivan_maieli"
-          className="w-full aspect-[3/4] object-cover rounded-lg shadow-lg"
+          className="flex-1 min-w-[120px] max-w-[200px] aspect-[3/4] object-cover"
         />
+
       </div>
 
       <p>
