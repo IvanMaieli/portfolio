@@ -11,17 +11,66 @@ body, input, textarea, select {
   font-family: "Hack", monospace;
 }
 
+/* Effetto flicker / glitch */
 @keyframes flicker {
   0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
     opacity: 1;
   }
   20%, 22%, 24%, 55% {
-    opacity: 0.4;
+    opacity: 0.5;
   }
 }
 
-.animate-flicker {
-  animation: flicker 0.20s infinite;
+
+/* Applicabile a tutto il terminale */
+/* Effetto scanline */
+.scanlines {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 182, 65, 0.05) 0px,
+    rgba(0, 0, 0, 0.15) 2px
+  );
+  mix-blend-mode: multiply;
+  animation: scanmove 6s linear infinite;
+}
+
+/* Movimento verticale delle scanline */
+@keyframes scanmove {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+
+/* Effetto leggero glow + flicker */
+.terminal-glow {
+  text-shadow:
+    0 0 1px #ffb641,
+    0 0 2px #ffb641,
+    0 0 4px rgba(255, 182, 65, 0.6);
+  animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.9;
+  }
+  21%, 23%, 56% {
+    opacity: 0.95;
+  }
 }
 
 
+.error-text {
+  color: #ff3b3b;
+  text-shadow: 0 0 2px #ff3b3b, 0 0 6px rgba(255, 0, 0, 0.6);
+}
