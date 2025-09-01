@@ -1,24 +1,20 @@
 const Whoami = () => {
   return (
-    <div className="flex flex-col items-left px-4 space-y-8 text-left">
+    <div className="flex flex-col items-start px-4 space-y-6 text-left max-w-4xl mx-auto">
 
-      {/* Galleria di immagini */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4 mb-4 w-full max-w-md h-full">
+      {/* Galleria di immagini responsive */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 mb-6 w-full">
         <img
           src="/me.png"
           alt="ivan_maieli"
-          className="w-full h-48 object-cover rounded-lg"
+          className="w-full aspect-[3/4] object-cover rounded-lg shadow-lg"
         />
         <img
           src="/me2.png"
           alt="ivan_maieli"
-          className="w-full h-48 object-cover rounded-lg"
+          className="w-full aspect-[3/4] object-cover rounded-lg shadow-lg"
         />
-        {/* Se vuoi aggiungere una terza immagine */}
-
       </div>
-
-      <p>==================</p>
 
       <p>
         Hey there! I’m <strong>Ivan Maieli</strong> – a computer nerd with a
