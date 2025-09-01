@@ -57,10 +57,9 @@ const App = () => {
     setHistory((prev) => [...prev, { cmd, output }]);
     setInput("");
 
-    // scroll automatico verso il basso
     setTimeout(() => {
       historyEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-    }, 100); // timeout più lungo per Safari
+    }, 100);
   };
 
   const handleKeyDown = (e) => {
@@ -87,26 +86,26 @@ const App = () => {
 
   return (
     <div
-      className="bg-black text-[#FFB641] font-mono w-screen flex flex-col relative overflow-hidden min-h-[100dvh]"
+      className="bg-black text-[#FFB641] font-mono w-screen flex justify-center relative overflow-hidden min-h-[100dvh]"
       style={{ fontFamily: '"Major Mono Display", monospace', height: windowHeight }}
       onClick={() => inputRef.current.focus()}
     >
-      {/* Glitch / scanline dinamico */}
+      {/* Glitch / scanline */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
         <div className="w-full h-full bg-[repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0.05) 1px)] animate-flicker"></div>
       </div>
 
-      {/* Terminale content */}
-      <div className="flex-1 overflow-y-auto overflow-x-hidden z-10 relative pb-24 px-4 sm:px-6 flex flex-col items-center">
+      {/* Terminale container centrato */}
+      <div className="flex-1 max-w-4xl w-full flex flex-col pb-24 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10">
         {history.map((item, index) => (
-          <div key={index} className="mb-2 animate-flicker w-full max-w-3xl">
+          <div key={index} className="mb-2 animate-flicker">
             <p>&gt; {item.cmd}</p>
-            <div className="w-full">{item.output}</div>
+            <div>{item.output}</div>
           </div>
         ))}
 
         {/* input */}
-        <div className="flex items-center mt-2 animate-flicker w-full max-w-3xl">
+        <div className="flex items-center mt-2 animate-flicker">
           <span className="mr-2">&gt;</span>
           <input
             ref={inputRef}
@@ -118,12 +117,11 @@ const App = () => {
           />
         </div>
 
-        {/* ref per scroll automatico */}
         <div ref={historyEndRef}></div>
       </div>
 
-      {/* Footer responsive */}
-      <footer className="mt-4 text-[#fac570] text-sm border-t border-[#c28625] pt-2 z-10 relative animate-flicker px-4 sm:px-6 text-center">
+      {/* Footer */}
+      <footer className="absolute bottom-0 w-full text-center mt-4 text-[#fac570] text-sm border-t border-[#c28625] pt-2 z-10 animate-flicker px-4 sm:px-6">
         Tip: type 0/clear, 1/whoami, 2/projects, 3/contacts, 4/blog
       </footer>
     </div>
