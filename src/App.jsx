@@ -60,7 +60,7 @@ const App = () => {
     // scroll automatico verso il basso
     setTimeout(() => {
       historyEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-    }, 50);
+    }, 100); // timeout più lungo per Safari
   };
 
   const handleKeyDown = (e) => {
@@ -87,7 +87,7 @@ const App = () => {
 
   return (
     <div
-      className="bg-black text-[#FFB641] font-mono w-screen p-4 flex flex-col relative overflow-hidden"
+      className="bg-black text-[#FFB641] font-mono w-screen flex flex-col relative overflow-hidden min-h-[100dvh]"
       style={{ fontFamily: '"Major Mono Display", monospace', height: windowHeight }}
       onClick={() => inputRef.current.focus()}
     >
@@ -97,16 +97,16 @@ const App = () => {
       </div>
 
       {/* Terminale content */}
-      <div className="flex-1 overflow-y-auto overflow-x-hidden z-10 relative pb-24 px-4">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden z-10 relative pb-24 px-4 sm:px-6 flex flex-col items-center">
         {history.map((item, index) => (
-          <div key={index} className="mb-2 animate-flicker">
+          <div key={index} className="mb-2 animate-flicker w-full max-w-3xl">
             <p>&gt; {item.cmd}</p>
-            <div>{item.output}</div>
+            <div className="w-full">{item.output}</div>
           </div>
         ))}
 
         {/* input */}
-        <div className="flex items-center mt-2 animate-flicker">
+        <div className="flex items-center mt-2 animate-flicker w-full max-w-3xl">
           <span className="mr-2">&gt;</span>
           <input
             ref={inputRef}
@@ -123,7 +123,7 @@ const App = () => {
       </div>
 
       {/* Footer responsive */}
-      <footer className="mt-4 text-[#fac570] text-sm border-t border-[#c28625] pt-2 z-10 relative animate-flicker px-4">
+      <footer className="mt-4 text-[#fac570] text-sm border-t border-[#c28625] pt-2 z-10 relative animate-flicker px-4 sm:px-6 text-center">
         Tip: type 0/clear, 1/whoami, 2/projects, 3/contacts, 4/blog
       </footer>
     </div>
