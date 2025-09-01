@@ -43,7 +43,7 @@
   text-shadow:
     0 0 1px #ffb641,
     0 0 2px #ffb641,
-    0 0 4px rgba(255, 182, 65, 0.6);
+    0 0 3px rgba(255, 182, 65, 0.5);
   animation: flicker 1.5s infinite;
 }
 

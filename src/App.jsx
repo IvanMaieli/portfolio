@@ -114,7 +114,7 @@ const App = () => {
       </div>
 
       {/* Footer fisso */}
-      <footer className="terminal-glow fixed bottom-0 left-0 w-full text-center bg-black text-[#fac570] text-sm border-t border-[#c28625] pt-3 pb-3 z-20 px-4 sm:px-6">
+      <footer className="terminal-glow fixed bottom-0 left-0 w-full text-center bg-black text-[#fac570] text-sm border-t-2 border-[#c28625] pt-3 pb-3 z-20 px-4 sm:px-6">
         Commands: [ clear(0) - whoami(1) - projects(2) - contacts(3) - blog(4) ]
       </footer>
     </div>
