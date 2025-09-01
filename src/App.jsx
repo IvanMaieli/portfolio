@@ -19,12 +19,15 @@ const App = () => {
   const inputRef = useRef(null);
   const historyEndRef = useRef(null);
 
+  // Focus automatico sull'input
   useEffect(() => {
     inputRef.current?.focus();
   }, [history]);
 
+  // Funzione per gestire il comando
   const handleCommand = (cmd) => {
-    let output;
+    let outputComponent;
+
     switch (cmd) {
       case "0":
       case "clear":
@@ -32,50 +35,36 @@ const App = () => {
         setInput("");
         return;
       case "1":
-      case "whoami":
-        output = <Whoami />;
+        outputComponent = <Whoami />;
         break;
       case "2":
-      case "projects":
-        output = <Projects />;
+        outputComponent = <Projects />;
         break;
       case "3":
-      case "contacts":
-        output = <Contacts />;
+        outputComponent = <Contacts />;
         break;
       case "4":
-      case "blog":
-        output = <Blog />;
+        outputComponent = <Blog />;
         break;
       default:
-        output = <p className="error-text">Command not found: {cmd}</p>;
+        outputComponent = <span className="error-text">Command not found: {cmd}</span>;
     }
 
-    setHistory((prev) => [...prev, { cmd, output }]);
+    setHistory((prev) => [...prev, { cmd, output: outputComponent }]);
     setInput("");
+
+    // Scroll automatico verso il nuovo prompt
+    setTimeout(() => {
+      historyEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
   };
 
+  // Gestione invio
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && input.trim() && !typing) {
-      typeCommand(input.trim().toLowerCase());
+      handleCommand(input.trim().toLowerCase());
     }
   };
-
-  const typeCommand = async (cmd) => {
-    setTyping(true);
-    let current = "";
-    for (let i = 0; i < cmd.length; i++) {
-      current += cmd[i];
-      setInput(current);
-      await new Promise((res) => setTimeout(res, 50));
-    }
-    setTyping(false);
-    handleCommand(cmd);
-  };
-
-  useEffect(() => {
-    historyEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [history]);
 
   return (
     <div
