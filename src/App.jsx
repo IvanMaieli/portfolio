@@ -85,7 +85,6 @@ const App = () => {
       style={{ fontFamily: '"Space Mono", monospace' }}
       onClick={() => inputRef.current?.focus()}
     >
-      
       {/* Overlay scanlines */}
       <div className="scanlines"></div>
 
