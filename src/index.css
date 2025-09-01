@@ -27,7 +27,6 @@
     rgba(255, 182, 65, 0.1) 1px
   );
   animation: flicker 0.15s infinite;
-  z-index: 30;
 }
 
 /* Movimento verticale delle scanline */
