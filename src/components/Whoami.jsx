@@ -8,12 +8,12 @@ const Whoami = () => {
         {/* Galleria di immagini */}
         <div className="flex space-x-4 mb-4">
             <img
-            src="src\assets\me.png"
+            src="public\me.png"
             alt="ivan_maieli"
             className="w-44 h-64"
             />
             <img
-            src="src\assets\me2.png"
+            src="public\me2.png"
             alt="ivan_maieli"
             className="w-44 h-64"
             />
