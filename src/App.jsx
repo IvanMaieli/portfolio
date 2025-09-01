@@ -98,7 +98,7 @@ const App = () => {
         ))}
 
         {/* Input */}
-        <div className="flex items-center mt-2 w-full animate-flicker">
+        <div className="terminal-glow flex items-center mt-2 w-full animate-flicker">
           <span className="mr-2">&gt;&gt;&gt;</span>
           <input
             ref={inputRef}
