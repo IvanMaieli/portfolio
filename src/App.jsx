@@ -82,7 +82,7 @@ const App = () => {
   return (
     <div
       className="bg-black text-[#FFB641] font-mono w-screen min-h-[100dvh] flex flex-col relative overflow-hidden"
-      style={{ fontFamily: '"Major Mono Display", monospace' }}
+      style={{ fontFamily: '"Hack", monospace' }}
       onClick={() => inputRef.current?.focus()}
     >
       {/* Glitch / scanline */}
