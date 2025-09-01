@@ -16,15 +16,13 @@ const App = () => {
   const [history, setHistory] = useState([]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const inputRef = useRef(null);
   const historyEndRef = useRef(null);
 
+  // Focus automatico sull'input
   useEffect(() => {
-    const handleResize = () => setWindowHeight(window.innerHeight);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    inputRef.current?.focus();
+  }, [history]);
 
   const handleCommand = (cmd) => {
     let output;
@@ -51,16 +49,11 @@ const App = () => {
         output = <Blog />;
         break;
       default:
-        output = <p className="text-red-500 animate-flicker">Command not found: {cmd}</p>;
+        output = <p className="text-red-500">Command not found: {cmd}</p>;
     }
 
     setHistory((prev) => [...prev, { cmd, output }]);
     setInput("");
-
-    // scroll automatico verso il basso
-    setTimeout(() => {
-      historyEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-    }, 100); // timeout più lungo per Safari
   };
 
   const handleKeyDown = (e) => {
@@ -81,32 +74,33 @@ const App = () => {
     handleCommand(cmd);
   };
 
+  // scroll automatico ogni volta che la history cambia
   useEffect(() => {
-    inputRef.current.focus();
+    historyEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history]);
 
   return (
     <div
-      className="bg-black text-[#FFB641] font-mono w-screen flex flex-col relative overflow-hidden min-h-[100dvh]"
-      style={{ fontFamily: '"Major Mono Display", monospace', height: windowHeight }}
-      onClick={() => inputRef.current.focus()}
+      className="bg-black text-[#FFB641] font-mono w-screen min-h-[100dvh] flex flex-col relative overflow-hidden"
+      style={{ fontFamily: '"Major Mono Display", monospace' }}
+      onClick={() => inputRef.current?.focus()}
     >
-      {/* Glitch / scanline dinamico */}
+      {/* Glitch / scanline */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
         <div className="w-full h-full bg-[repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0.05) 1px)] animate-flicker"></div>
       </div>
 
-      {/* Terminale content */}
-      <div className="flex-1 overflow-y-auto overflow-x-hidden z-10 relative pb-24 px-4 sm:px-6 flex flex-col items-left">
+      {/* Terminale scrollabile */}
+      <div className="flex-1 max-w-4xl w-full flex flex-col pt-4 pb-48 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10 mx-auto">
         {history.map((item, index) => (
-          <div key={index} className="mb-2 animate-flicker w-full max-w-3xl">
-            <p>&gt; {item.cmd}</p>
-            <div className="w-full">{item.output}</div>
+          <div key={index} className="mb-2 w-full">
+            <p className="text-left">&gt; {item.cmd}</p>
+            <div className="w-full text-left">{item.output}</div>
           </div>
         ))}
 
-        {/* input */}
-        <div className="flex items-center mt-2 animate-flicker w-full max-w-3xl">
+        {/* Input */}
+        <div className="flex items-center mt-2 w-full">
           <span className="mr-2">&gt;</span>
           <input
             ref={inputRef}
@@ -114,16 +108,16 @@ const App = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="bg-black flex-1 outline-none text-[#FFB641] caret-[#FFB641] animate-pulse text-lg sm:text-base md:text-lg"
+            className="bg-black flex-1 outline-none text-[#FFB641] caret-[#FFB641] text-lg sm:text-base md:text-lg"
           />
         </div>
 
-        {/* ref per scroll automatico */}
+        {/* Div finale per scroll */}
         <div ref={historyEndRef}></div>
       </div>
 
-      {/* Footer responsive */}
-      <footer className="mt-4 text-[#fac570] text-sm border-t border-[#c28625] pt-2 z-10 relative animate-flicker px-4 sm:px-6 text-center">
+      {/* Footer fisso */}
+      <footer className="fixed bottom-0 left-0 w-full text-center bg-black text-[#fac570] text-sm border-t border-[#c28625] pt-3 pb-3 z-20 px-4 sm:px-6">
         Tip: type 0/clear, 1/whoami, 2/projects, 3/contacts, 4/blog
       </footer>
     </div>

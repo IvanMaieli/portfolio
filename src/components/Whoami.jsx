@@ -1,10 +1,9 @@
 const Whoami = () => {
   return (
-    <div className="flex flex-col items-center px-4 space-y-4 text-center">
-      <p>&gt; whoami</p>
+    <div className="flex flex-col items-left px-4 space-y-8 text-left">
 
       {/* Galleria di immagini */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4 w-full max-w-md">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4 mb-4 w-full max-w-md h-full">
         <img
           src="/me.png"
           alt="ivan_maieli"
@@ -16,11 +15,7 @@ const Whoami = () => {
           className="w-full h-48 object-cover rounded-lg"
         />
         {/* Se vuoi aggiungere una terza immagine */}
-        <img
-          src="/me3.png"
-          alt="ivan_maieli"
-          className="w-full h-48 object-cover rounded-lg"
-        />
+
       </div>
 
       <p>==================</p>

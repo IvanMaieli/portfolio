@@ -7,7 +7,6 @@ const Projects = () => {
 
   return (
     <div className="space-y-2">
-      <p>&gt; projects</p>
       <ul className="list-disc pl-6">
         {projectList.map((proj, index) => (
           <li key={index}>
