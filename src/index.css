@@ -1,15 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Hack";
-  src: url("/Hack-Regular.ttf") format("truetype"); /* assicurati che il nome del file corrisponda */
-  font-weight: normal;
-  font-style: normal;
-}
-
-body, input, textarea, select {
-  font-family: "Hack", monospace;
-}
 
 /* Effetto flicker / glitch */
 @keyframes flicker {

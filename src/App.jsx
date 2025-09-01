@@ -82,7 +82,7 @@ const App = () => {
   return (
     <div
       className="bg-black text-[#FFB641] font-mono w-screen min-h-[100dvh] flex flex-col relative overflow-hidden"
-      style={{ fontFamily: '"Hack", monospace' }}
+      style={{ fontFamily: '"Space Mono", monospace' }}
       onClick={() => inputRef.current?.focus()}
     >
       {/* Overlay scanlines */}
