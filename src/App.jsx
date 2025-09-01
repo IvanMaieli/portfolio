@@ -4,7 +4,6 @@ import Projects from "./components/Projects";
 import Contacts from "./components/Contacts";
 import Blog from "./components/Blog";
 
-
 const COMMANDS = {
   "0": "clear",
   "1": "whoami",
@@ -17,8 +16,16 @@ const App = () => {
   const [history, setHistory] = useState([]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const inputRef = useRef(null);
-  const historyEndRef = useRef(null); // <<-- aggiunta ref per scroll
+  const historyEndRef = useRef(null);
+
+  // Aggiorna altezza dinamica per mobile
+  useEffect(() => {
+    const handleResize = () => setWindowHeight(window.innerHeight);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleCommand = (cmd) => {
     let output;
@@ -44,7 +51,6 @@ const App = () => {
       case "blog":
         output = <Blog />;
         break;
-
       default:
         output = <p className="text-red-500 animate-flicker">Command not found: {cmd}</p>;
     }
@@ -54,7 +60,7 @@ const App = () => {
 
     // scroll automatico verso il basso
     setTimeout(() => {
-      historyEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      historyEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
     }, 50);
   };
 
@@ -70,7 +76,7 @@ const App = () => {
     for (let i = 0; i < cmd.length; i++) {
       current += cmd[i];
       setInput(current);
-      await new Promise((res) => setTimeout(res, 50)); // effetto digitazione
+      await new Promise((res) => setTimeout(res, 50));
     }
     setTyping(false);
     handleCommand(cmd);
@@ -82,9 +88,9 @@ const App = () => {
 
   return (
     <div
-      className="bg-black text-[#FFB641] font-mono w-screen h-screen p-4 flex flex-col relative overflow-hidden"
+      className="bg-black text-[#FFB641] font-mono w-screen p-4 flex flex-col relative overflow-hidden"
+      style={{ fontFamily: '"Major Mono Display", monospace', height: windowHeight }}
       onClick={() => inputRef.current.focus()}
-      style={{ fontFamily: '"Major Mono Display", monospace' }}
     >
       {/* Glitch / scanline dinamico */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
@@ -92,7 +98,7 @@ const App = () => {
       </div>
 
       {/* Terminale content */}
-      <div className="flex-1 overflow-y-auto z-10 relative">
+      <div className="flex-1 overflow-y-auto z-10 relative pb-24">
         {history.map((item, index) => (
           <div key={index} className="mb-2 animate-flicker">
             <p>&gt; {item.cmd}</p>
