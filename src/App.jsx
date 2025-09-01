@@ -35,15 +35,19 @@ const App = () => {
         setInput("");
         return;
       case "1":
+      case "whoami":
         outputComponent = <Whoami />;
         break;
       case "2":
+      case "projects":
         outputComponent = <Projects />;
         break;
       case "3":
+      case "contacts":
         outputComponent = <Contacts />;
         break;
       case "4":
+      case "blog":
         outputComponent = <Blog />;
         break;
       default:
