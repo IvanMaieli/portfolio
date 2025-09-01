@@ -15,7 +15,7 @@
 /* Applicabile a tutto il terminale */
 /* Effetto scanline */
 .scanlines {
-  position: fixed; /* Fisso sulla viewport */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -24,9 +24,11 @@
   background: repeating-linear-gradient(
     to bottom,
     rgba(255, 182, 65, 0.05) 0px,
-    rgba(255, 182, 65, 0.1) 1px
+    rgba(255, 182, 65, 0.05) 1px,
+    transparent 2px,
+    transparent 4px
   );
-  animation: flicker 0.30s infinite;
+  mix-blend-mode: screen; /* così il colore si adatta meglio */
 }
 
 /* Movimento verticale delle scanline */
