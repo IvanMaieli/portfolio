@@ -94,14 +94,14 @@ const App = () => {
       <div className="flex-1 max-w-4xl w-full flex flex-col pt-4 pb-48 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10 mx-auto">
         {history.map((item, index) => (
           <div key={index} className="mb-2 w-full">
-            <p className="text-left">&gt; {item.cmd}</p>
+            <p className="text-left">&gt;&gt;&gt; {item.cmd}</p>
             <div className="w-full text-left">{item.output}</div>
           </div>
         ))}
 
         {/* Input */}
         <div className="flex items-center mt-2 w-full">
-          <span className="mr-2">&gt;</span>
+          <span className="mr-2">&gt;&gt;&gt;</span>
           <input
             ref={inputRef}
             type="text"
