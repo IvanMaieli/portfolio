@@ -2,12 +2,15 @@ import { useState, useEffect, useRef } from "react";
 import Whoami from "./components/Whoami";
 import Projects from "./components/Projects";
 import Contacts from "./components/Contacts";
+import Blog from "./components/Blog";
+
 
 const COMMANDS = {
+  "0": "clear",
   "1": "whoami",
   "2": "projects",
   "3": "contacts",
-  "4": "clear",
+  "4": "blog",
 };
 
 const App = () => {
@@ -15,10 +18,16 @@ const App = () => {
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const inputRef = useRef(null);
+  const historyEndRef = useRef(null); // <<-- aggiunta ref per scroll
 
   const handleCommand = (cmd) => {
     let output;
     switch (cmd) {
+      case "0":
+      case "clear":
+        setHistory([]);
+        setInput("");
+        return;
       case "1":
       case "whoami":
         output = <Whoami />;
@@ -32,16 +41,21 @@ const App = () => {
         output = <Contacts />;
         break;
       case "4":
-      case "clear":
-        setHistory([]);
-        setInput("");
-        return;
+      case "blog":
+        output = <Blog />;
+        break;
+
       default:
         output = <p className="text-red-500 animate-flicker">Command not found: {cmd}</p>;
     }
-    
+
     setHistory((prev) => [...prev, { cmd, output }]);
     setInput("");
+
+    // scroll automatico verso il basso
+    setTimeout(() => {
+      historyEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
   };
 
   const handleKeyDown = (e) => {
@@ -86,6 +100,7 @@ const App = () => {
           </div>
         ))}
 
+        {/* input */}
         <div className="flex items-center mt-2 animate-flicker">
           <span className="mr-2">&gt;</span>
           <input
@@ -97,11 +112,14 @@ const App = () => {
             className="bg-black flex-1 outline-none text-[#FFB641] caret-[#FFB641] animate-pulse text-lg sm:text-base md:text-lg"
           />
         </div>
+
+        {/* ref per scroll automatico */}
+        <div ref={historyEndRef}></div>
       </div>
 
       {/* Footer responsive */}
       <footer className="mt-4 text-[#fac570] text-sm border-t border-[#c28625] pt-2 z-10 relative animate-flicker">
-        Tip: type 1/whoami, 2/projects, 3/contacts, 4/clear
+        Tip: type 0/clear, 1/whoami, 2/projects, 3/contacts, 4/blog
       </footer>
     </div>
   );
