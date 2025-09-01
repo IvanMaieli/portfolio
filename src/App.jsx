@@ -20,7 +20,6 @@ const App = () => {
   const inputRef = useRef(null);
   const historyEndRef = useRef(null);
 
-  // Aggiorna altezza dinamica per mobile
   useEffect(() => {
     const handleResize = () => setWindowHeight(window.innerHeight);
     window.addEventListener("resize", handleResize);
@@ -98,7 +97,7 @@ const App = () => {
       </div>
 
       {/* Terminale content */}
-      <div className="flex-1 overflow-y-auto z-10 relative pb-24">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden z-10 relative pb-24 px-4">
         {history.map((item, index) => (
           <div key={index} className="mb-2 animate-flicker">
             <p>&gt; {item.cmd}</p>
@@ -124,7 +123,7 @@ const App = () => {
       </div>
 
       {/* Footer responsive */}
-      <footer className="mt-4 text-[#fac570] text-sm border-t border-[#c28625] pt-2 z-10 relative animate-flicker">
+      <footer className="mt-4 text-[#fac570] text-sm border-t border-[#c28625] pt-2 z-10 relative animate-flicker px-4">
         Tip: type 0/clear, 1/whoami, 2/projects, 3/contacts, 4/blog
       </footer>
     </div>
