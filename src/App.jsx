@@ -118,7 +118,7 @@ const App = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="terminal-glow bg-transparent flex-1 outline-none text-[#c5003c] caret-[#c5003c] text-xl sm:text-base"
+              className="terminal-glow bg-transparent flex-1 outline-none text-[#c5003c] caret-[#c5003c] text-xl"
             />
           </div>
 
