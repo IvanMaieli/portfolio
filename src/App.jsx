@@ -118,10 +118,9 @@ const App = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="terminal-glow bg-transparent flex-1 outline-none text-[#c5003c] caret-[#c5003c] text-xl"
+              className="terminal-glow bg-transparent flex-1 outline-none border-b-2 text-[#c5003c] caret-[#c5003c] text-xl"
             />
           </div>
-
           <div ref={historyEndRef}></div>
         </div>
       </div>
