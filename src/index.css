@@ -130,3 +130,13 @@ html, body {
   0 0 3px #399a8d83;
   animation: flicker 1.5s infinite;
 }
+
+/* Cursore / selezioni */
+.error-text {
+    color: #cc013a; /* Ambra scuro */
+    text-shadow:
+    0 0 1px #ac0031,
+    0 0 2px #890027,
+    0 0 3px #ad003184;
+  animation: flicker 1.5s infinite;
+}

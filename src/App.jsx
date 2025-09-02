@@ -83,7 +83,7 @@ const App = () => {
         <div className="scanlines"></div>
         <div className="animate-flicker font-medium" style={{ fontFamily: '"Rajdhani", monospace' }}>
           <p className="text-amber-medium text-3xl">Loading terminal...</p>
-          <p className="text-amber-medium mt-2 text-2xl text-amber-light">
+          <p className="text-amber-medium mt-2 text-2xl text-amber-medium">
             Press <strong>help</strong> to see the commands.
           </p>
         </div>
