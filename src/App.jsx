@@ -103,21 +103,21 @@ const App = () => {
         <div className="w-full max-w-4xl">
           {history.map((item, index) => (
             <div key={index} className="mb-2 w-full">
-              {item.cmd && <p className="text-amber-medium text-left">&gt;&gt;&gt; {item.cmd}</p>}
+              {item.cmd && <p className="text-amber-medium text-left"># {item.cmd}</p>}
               <div className="text-amber-medium text-left">{item.output}</div>
             </div>
           ))}
 
           {/* Prompt */}
           <div className="text-amber-medium flex items-center mt-2 w-full animate-flicker">
-            <p className="mr-1.5">&gt;&gt;&gt; </p>
+            <p className="mr-1.5">#</p>
             <input
               ref={inputRef}
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="bg-transparent flex-1 outline-none border-b-2 text-amber-medium caret-[#FFA500] text-2xl"
+              className="bg-transparent flex-1 outline-none text-amber-medium caret-[#FF8C00] text-2xl"
             />
           </div>
           <div ref={historyEndRef}></div>

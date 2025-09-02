@@ -39,6 +39,12 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'RedHatMono';
+    src: url('/fonts/redhat/RedHatMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 html, body {
   overscroll-behavior: none;

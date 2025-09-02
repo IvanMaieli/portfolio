@@ -1,8 +1,13 @@
 const Projects = () => {
   const projectList = [
-    { name: "Cyber Portfolio", desc: "Terminal-inspired personal portfolio." },
-    { name: "AI Chatbot", desc: "Experimental AI assistant using GPT models." },
-    { name: "HackSim Game", desc: "Retro hacker simulator game." },
+    { name: "PoetrAI", 
+      desc: 
+      `PoetrAI is a haiku poetry generation software, the first of its kind. 
+      The project was developed entirely in Python and uses the first fine-tuning 
+      techniques on OpenAI's GPT-2 model. Through various parameter optimisations, 
+      I managed to make the model perform well enough. I created it when I was 16, 
+      with the aim of experimenting with AI.`  
+    },
   ];
 
   return (
