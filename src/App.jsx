@@ -17,12 +17,26 @@ const COMPONENT_MAP = {
 const App = () => {
   const [history, setHistory] = useState([]);
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(true); // stato caricamento
   const inputRef = useRef(null);
   const historyEndRef = useRef(null);
 
   useEffect(() => {
+    // focus input
     inputRef.current?.focus();
   }, [history]);
+
+  useEffect(() => {
+    // simuliamo un caricamento iniziale di 2 secondi
+    const timer = setTimeout(() => {
+      setLoading(false);
+      setHistory((prev) => [
+        ...prev,
+        { cmd: "", output: <span>Welcome to the terminal! Type <strong>help</strong> to see the commands.</span> }
+      ]);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleCommand = (cmd) => {
     const normalized = cmd.toLowerCase();
@@ -62,6 +76,21 @@ const App = () => {
     }
   };
 
+  // Schermata di caricamento
+  if (loading) {
+    return (
+      <div className="bg-black text-[#FFB641] w-screen h-screen flex items-center justify-center font-mono text-center px-4">
+        <div className="scanlines"></div>
+        <div className="terminal-glow animate-flicker">
+          <p className="text-lg sm:text-xl">Loading terminal...</p>
+          <p className="mt-2 text-sm text-[#fac570]">
+            Press <strong>help</strong> to see the commands.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className="bg-black text-[#FFB641] font-mono w-screen min-h-[100dvh] flex relative overflow-hidden"
@@ -70,12 +99,12 @@ const App = () => {
     >
       <div className="scanlines"></div>
 
-      {/* Terminale scrollabile, centrato solo orizzontalmente */}
+      {/* Terminale scrollabile */}
       <div className="terminal-glow flex-1 flex flex-col items-center pt-4 pb-32 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10">
         <div className="w-full max-w-4xl">
           {history.map((item, index) => (
             <div key={index} className="mb-2 w-full">
-              <p className="text-left">&gt;&gt;&gt; {item.cmd}</p>
+              {item.cmd && <p className="text-left">&gt;&gt;&gt; {item.cmd}</p>}
               <div className="text-left">{item.output}</div>
             </div>
           ))}
