@@ -110,7 +110,7 @@ const App = () => {
 
           {/* Prompt */}
           <div className="text-amber-medium flex items-center mt-2 w-full animate-flicker">
-            <p className="mr-2.5">&gt;&gt;&gt; </p>
+            <p className="mr-1.5">&gt;&gt;&gt; </p>
             <input
               ref={inputRef}
               type="text"
