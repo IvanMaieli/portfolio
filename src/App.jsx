@@ -54,7 +54,7 @@ const App = () => {
         <span className="error-text">Command not found: {cmd}</span>
       );
     } else if (command.key === "0") {
-      setHistory([]);
+      setHistory([{ cmd: "", output: <span>Welcome to the terminal! Type <strong>help</strong> to see the commands.</span> }]);
       setInput("");
       return;
     } else {
