@@ -49,6 +49,7 @@
 html, body {
   overscroll-behavior: none;
   overflow-x: none;
+  overflow-inline: hidden;
 }
 
 
