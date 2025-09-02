@@ -81,9 +81,9 @@ const App = () => {
     return (
       <div className="bg-black text-[#c5003c] w-screen h-screen flex items-center justify-center text-center px-4">
         <div className="scanlines"></div>
-        <div className="terminal-glow animate-flicker font-medium" style={{ fontFamily: '"Rajdhani", sans-serif' }}>
-          <p className="text-2xl">Loading terminal...</p>
-          <p className="mt-2 text-xl text-[#c5003c]">
+        <div className="terminal-glow animate-flicker font-medium" style={{ fontFamily: '"VT323", font-mono' }}>
+          <p className="text-3xl">Loading terminal...</p>
+          <p className="mt-2 text-2xl text-[#c5003c]">
             Press <strong>help</strong> to see the commands.
           </p>
         </div>
@@ -93,8 +93,8 @@ const App = () => {
 
   return (
     <div
-      className="bg-black text-[#c5003c] font-medium text-xl w-screen min-h-[100dvh] flex relative overflow-hidden"
-      style={{ fontFamily: '"Rajdhani", sans-serif' }}
+      className="bg-black text-[#c5003c] font-medium text-2xl w-screen min-h-[100dvh] flex relative overflow-hidden"
+      style={{ fontFamily: '"VT323", font-mono' }}
       onClick={() => inputRef.current?.focus()}
     >
       <div className="scanlines"></div>
@@ -111,14 +111,14 @@ const App = () => {
 
           {/* Prompt */}
           <div className="terminal-glow flex items-center mt-2 w-full animate-flicker">
-            <p className="mr-1.25">&gt;&gt;&gt; </p>
+            <p className="mr-2.5">&gt;&gt;&gt; </p>
             <input
               ref={inputRef}
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="terminal-glow bg-transparent flex-1 outline-none border-b-2 text-[#c5003c] caret-[#c5003c] text-xl"
+              className="terminal-glow bg-transparent flex-1 outline-none border-b-2 text-[#c5003c] caret-[#c5003c] text-2xl"
             />
           </div>
           <div ref={historyEndRef}></div>

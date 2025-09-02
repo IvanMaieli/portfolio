@@ -32,9 +32,11 @@
     font-style: normal;
 }
 
-/* Applicazione globale */
-body {
-    font-family: 'Rajdhani', sans-serif;
+@font-face {
+    font-family: 'VT323';
+    src: url('/fonts/vt323/VT323-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 
