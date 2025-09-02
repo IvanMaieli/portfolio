@@ -82,7 +82,7 @@ const App = () => {
       <div className="bg-black text-[#c5003c] w-screen h-screen flex items-center justify-center text-center px-4">
         <div className="scanlines"></div>
         <div className="terminal-glow animate-flicker font-medium" style={{ fontFamily: '"Rajdhani", sans-serif' }}>
-          <p className="text-2xl sm:text-xl">Loading terminal...</p>
+          <p className="text-2xl">Loading terminal...</p>
           <p className="mt-2 text-xl text-[#c5003c]">
             Press <strong>help</strong> to see the commands.
           </p>
