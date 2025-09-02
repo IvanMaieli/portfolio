@@ -95,7 +95,6 @@ const App = () => {
     <div
       className="bg-amber font-medium text-2xl w-screen min-h-[100dvh] flex relative overflow-hidden"
       style={{ fontFamily: '"Rajdhani", monospace' }}
-      onClick={() => inputRef.current?.focus()}
     >
       <div className="scanlines"></div>
 
