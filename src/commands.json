@@ -1,0 +1,38 @@
+[
+  {
+    "key": "0",
+    "alias": ["clear"],
+    "component": "",
+    "description": "Clear the terminal history."
+  },
+  {
+    "key": "1",
+    "alias": ["whoami"],
+    "component": "Whoami",
+    "description": "Display information about me."
+  },
+  {
+    "key": "2",
+    "alias": ["projects"],
+    "component": "Projects",
+    "description": "Show my personal and academic projects."
+  },
+  {
+    "key": "3",
+    "alias": ["contacts"],
+    "component": "Contacts",
+    "description": "Get my email, GitHub, LinkedIn, and social links."
+  },
+  {
+    "key": "4",
+    "alias": ["blog"],
+    "component": "Blog",
+    "description": "Read my thoughts and blog posts."
+  },
+    {
+    "key": "5",
+    "alias": ["help"],
+    "component": "Help",
+    "description": "List all available commands."
+  }
+]

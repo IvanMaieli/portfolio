@@ -47,7 +47,7 @@ export default function Contacts() {
     { text: "Email: ivan.maieli@gmail.com", link: "mailto:ivan.maieli@gmail.com" },
     { text: "GitHub: github.com/IvanMaieli", link: "https://github.com/IvanMaieli" },
     { text: "LinkedIn: linkedin.com/in/ivan-maieli", link: "https://linkedin.com/in/ivan-maieli" },
-    { text: "Instagram: https://www.instagram.com/ivan.maieli/", link: "https://www.instagram.com/ivan.maieli/" },
+    { text: "Instagram: instagram.com/ivan.maieli/", link: "https://www.instagram.com/ivan.maieli/" },
   ];
 
   return <TypewriterContacts content={content} speed={10} />;

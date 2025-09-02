@@ -1,5 +1,3 @@
-import Typewriter from "./Typewriter";
-
 const Whoami = () => {
   const fullText = `Hey there! I’m Ivan Maieli – a computer nerd with a serious love for code, rockets, and caffeine.
 
@@ -11,6 +9,9 @@ When I’m not coding, I’m gazing at the sky. Space launches, planes, rockets�
 
 I believe hard work pays off, a lot. So, if you ever need someone obsessed with computers, curious about the universe, and who occasionally talks to his PC like it’s a co-worker… that’s me.
 `;
+
+  // Splitta il testo in paragrafi
+  const paragraphs = fullText.split("\n\n");
 
   return (
     <div className="flex flex-col items-start px-4 space-y-6 text-left max-w-4xl mx-auto">
@@ -28,10 +29,10 @@ I believe hard work pays off, a lot. So, if you ever need someone obsessed with 
         />
       </div>
 
-      {/* Testo con typewriter */}
-      <div>
-        <Typewriter text={fullText} speed={10} />
-      </div>
+      {/* Testo normale */}
+      {paragraphs.map((para, idx) => (
+        <p key={idx}>{para}</p>
+      ))}
     </div>
   );
 };

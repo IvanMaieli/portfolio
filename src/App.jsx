@@ -3,123 +3,99 @@ import Whoami from "./components/Whoami";
 import Projects from "./components/Projects";
 import Contacts from "./components/Contacts";
 import Blog from "./components/Blog";
+import Help from "./components/Help";
+import commandsData from "./commands.json";
 
-const COMMANDS = {
-  "0": "clear",
-  "1": "whoami",
-  "2": "projects",
-  "3": "contacts",
-  "4": "blog",
+const COMPONENT_MAP = {
+  Whoami,
+  Projects,
+  Contacts,
+  Blog,
+  Help
 };
 
 const App = () => {
   const [history, setHistory] = useState([]);
   const [input, setInput] = useState("");
-  const [typing, setTyping] = useState(false);
   const inputRef = useRef(null);
   const historyEndRef = useRef(null);
 
-  // Focus automatico sull'input
   useEffect(() => {
     inputRef.current?.focus();
   }, [history]);
 
-  // Funzione per gestire il comando
   const handleCommand = (cmd) => {
+    const normalized = cmd.toLowerCase();
+
+    const command = commandsData.find(
+      (c) =>
+        c.key === normalized ||
+        c.alias.map((a) => a.toLowerCase()).includes(normalized)
+    );
+
     let outputComponent;
 
-    switch (cmd) {
-      case "0":
-      case "clear":
-        setHistory([]);
-        setInput("");
-        return;
-      case "1":
-      case "whoami":
-        outputComponent = <Whoami />;
-        break;
-      case "2":
-      case "projects":
-        outputComponent = <Projects />;
-        break;
-      case "3":
-      case "contacts":
-        outputComponent = <Contacts />;
-        break;
-      case "4":
-      case "blog":
-        outputComponent = <Blog />;
-        break;
-      default:
-        outputComponent = <span className="error-text">Command not found: {cmd}</span>;
+    if (!command) {
+      outputComponent = (
+        <span className="error-text">Command not found: {cmd}</span>
+      );
+    } else if (command.key === "0") {
+      setHistory([]);
+      setInput("");
+      return;
+    } else {
+      const Component = COMPONENT_MAP[command.component];
+      outputComponent = Component ? <Component /> : null;
     }
 
     setHistory((prev) => [...prev, { cmd, output: outputComponent }]);
     setInput("");
 
-    // Scroll automatico verso il nuovo prompt
     setTimeout(() => {
       historyEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 50);
   };
 
-  // Gestione invio
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" && input.trim() && !typing) {
-      handleCommand(input.trim().toLowerCase());
+    if (e.key === "Enter" && input.trim()) {
+      handleCommand(input.trim());
     }
   };
 
   return (
     <div
       className="bg-black text-[#FFB641] font-mono w-screen min-h-[100dvh] flex relative overflow-hidden"
-      style={{ fontFamily: '"IBM Plex Mono", monospace' }}
+      style={{ fontFamily: '"Space Mono", monospace' }}
       onClick={() => inputRef.current?.focus()}
     >
-      {/* Overlay scanlines */}
       <div className="scanlines"></div>
 
-      {/* Sidebar desktop */}
-      <aside className="hidden md:flex terminal-glow fixed left-0 top-0 w-40 h-full bg-transparent border-r-2 border-[#c28625] p-4 z-20 flex-col gap-4">
-        <h2 className="text-[#fac570] font-bold mb-2">Commands</h2>
-        <ul className="flex flex-col gap-2">
-          <li>0: clear</li>
-          <li>1: whoami</li>
-          <li>2: projects</li>
-          <li>3: contacts</li>
-          <li>4: blog</li>
-        </ul>
-      </aside>
+      {/* Terminale scrollabile, centrato solo orizzontalmente */}
+      <div className="terminal-glow flex-1 flex flex-col items-center pt-4 pb-32 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10">
+        <div className="w-full max-w-4xl">
+          {history.map((item, index) => (
+            <div key={index} className="mb-2 w-full">
+              <p className="text-left">&gt;&gt;&gt; {item.cmd}</p>
+              <div className="text-left">{item.output}</div>
+            </div>
+          ))}
 
-      {/* Terminale scrollabile */}
-      <div className="terminal-glow flex-1 max-w-4xl w-full flex flex-col pt-4 pb-48 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10 mx-auto md:ml-44">
-        {history.map((item, index) => (
-          <div key={index} className="mb-2 w-full">
-            <p className="text-left">&gt;&gt;&gt; {item.cmd}</p>
-            <div className="w-full text-left">{item.output}</div>
+          {/* Prompt */}
+          <div className="terminal-glow flex items-center mt-2 w-full animate-flicker">
+            <span className="mr-2">&gt;&gt;&gt;</span>
+            <input
+              ref={inputRef}
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              className="terminal-glow bg-transparent flex-1 outline-none text-[#FFB641] caret-[#FFB641] text-lg sm:text-base md:text-lg"
+            />
           </div>
-        ))}
 
-        {/* Input */}
-        <div className="terminal-glow flex items-center mt-2 w-full animate-flicker">
-          <span className="mr-2">&gt;&gt;&gt;</span>
-          <input
-            ref={inputRef}
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            className="terminal-glow bg-transparent flex-1 outline-none text-[#FFB641] caret-[#FFB641] text-lg sm:text-base md:text-lg"
-          />
+          <div ref={historyEndRef}></div>
         </div>
-
-        <div ref={historyEndRef}></div>
       </div>
-
-      {/* Footer mobile */}
-      <footer className="md:hidden fixed terminal-glow bottom-0 left-0 w-full text-center bg-transparent text-[#fac570] text-sm border-t-2 border-[#c28625] pt-3 pb-3 z-20 px-4 sm:px-6">
-        Commands: [ clear(0) - whoami(1) - projects(2) - contacts(3) - blog(4) ]
-      </footer>
     </div>
   );
 };

@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+html, body {
+  overscroll-behavior: none;
+}
 
 /* Effetto flicker / glitch */
 @keyframes flicker {
