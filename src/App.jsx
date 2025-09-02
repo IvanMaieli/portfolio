@@ -79,11 +79,11 @@ const App = () => {
   // Schermata di caricamento
   if (loading) {
     return (
-      <div className="bg-black text-[#FFB641] w-screen h-screen flex items-center justify-center font-mono text-center px-4">
+      <div className="bg-black text-[#c5003c] w-screen h-screen flex items-center justify-center text-center px-4">
         <div className="scanlines"></div>
-        <div className="terminal-glow animate-flicker">
+        <div className="terminal-glow animate-flicker font-medium" style={{ fontFamily: '"Rajdhani", sans-serif' }}>
           <p className="text-lg sm:text-xl">Loading terminal...</p>
-          <p className="mt-2 text-sm text-[#fac570]">
+          <p className="mt-2 text-sm text-[#c5003c]">
             Press <strong>help</strong> to see the commands.
           </p>
         </div>
@@ -93,8 +93,8 @@ const App = () => {
 
   return (
     <div
-      className="bg-black text-[#FFB641] font-mono w-screen min-h-[100dvh] flex relative overflow-hidden"
-      style={{ fontFamily: '"Space Mono", monospace' }}
+      className="bg-black text-[#c5003c] font-medium text-xl w-screen min-h-[100dvh] flex relative overflow-hidden"
+      style={{ fontFamily: '"Rajdhani", sans-serif' }}
       onClick={() => inputRef.current?.focus()}
     >
       <div className="scanlines"></div>
@@ -118,7 +118,7 @@ const App = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="terminal-glow bg-transparent flex-1 outline-none text-[#FFB641] caret-[#FFB641] text-lg sm:text-base md:text-lg"
+              className="terminal-glow bg-transparent flex-1 outline-none text-[#c5003c] caret-[#c5003c] text-lg sm:text-base md:text-lg"
             />
           </div>
 

@@ -8,7 +8,7 @@ const Help = () => {
       <ul className="list-none pl-6">
         {commandsData.map(comm => (
           <li key={comm.key} >
-            <span className="text-green-200">- {comm.alias}</span>: {comm.description}
+            <span className="text-[#55ead4]">- {comm.alias}</span>: {comm.description}
           </li>
         ))}
       </ul>

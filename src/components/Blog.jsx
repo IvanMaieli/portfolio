@@ -28,14 +28,14 @@ const Blog = () => {
   return (
     <div className="space-y-4">
       {posts.map((post, i) => (
-        <div key={i} className="border-l-2 border-[#FFB641] pl-2">
+        <div key={i} className="border-l-2 border-[#c5003c] pl-2">
           <h3
-            className="text-[#FFB641] font-bold cursor-pointer hover:underline"
+            className="text-[#c5003c] font-bold cursor-pointer hover:underline"
             onClick={() => togglePost(i)}
           >
             {post.title}
           </h3>
-          <p className="text-[#fac570] text-sm">{post.date}</p>
+          <p className="text-[#c5003c] text-sm">{post.date}</p>
           <p>
             {expandedPost === i
               ? post.content

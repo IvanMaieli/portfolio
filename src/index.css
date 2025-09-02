@@ -1,8 +1,47 @@
 @import "tailwindcss";
 
+/* Rajdhani Regular */
+@font-face {
+    font-family: 'Rajdhani';
+    src: url('fonts/rajdhani/Rajdhani-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Rajdhani Medium */
+@font-face {
+    font-family: 'Rajdhani';
+    src: url('fonts/rajdhani/Rajdhani-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* Rajdhani SemiBold */
+@font-face {
+    font-family: 'Rajdhani';
+    src: url('fonts/rajdhani/Rajdhani-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* Rajdhani Bold */
+@font-face {
+    font-family: 'Rajdhani';
+    src: url('fonts/rajdhani/Rajdhani-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Applicazione globale */
+body {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+
 html, body {
   overscroll-behavior: none;
 }
+
 
 /* Effetto flicker / glitch */
 @keyframes flicker {
@@ -47,9 +86,9 @@ html, body {
 /* Effetto leggero glow + flicker */
 .terminal-glow {
   text-shadow:
-    0 0 1px #ffb641,
-    0 0 2px #ffb641,
-    0 0 3px rgba(255, 182, 65, 0.5);
+    0 0 1px #c5003c,
+    0 0 2px #c5003c,
+    0 0 3px rgb(197, 0, 60, 0.5);
   animation: flicker 1.5s infinite;
 }
 
@@ -67,6 +106,6 @@ html, body {
 
 
 .error-text {
-  color: #ff3b3b;
-  text-shadow: 0 0 2px #ff3b3b, 0 0 6px rgba(255, 0, 0, 0.6);
+  color: #55ead4;
+  text-shadow: 0 0 2px #55ead4, 0 0 6px rgba(85, 234, 212, 0.5)
 }
