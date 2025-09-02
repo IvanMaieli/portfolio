@@ -14,7 +14,7 @@ I believe hard work pays off, a lot. So, if you ever need someone obsessed with 
   const paragraphs = fullText.split("\n\n");
 
   return (
-    <div className="flex flex-col items-start px-4 space-y-6 text-left max-w-4xl mx-auto">
+    <div className="flex terminal-glow text-celestial flex-col items-start px-4 space-y-6 text-left max-w-4xl mx-auto">
       {/* Galleria di immagini */}
       <div className="flex flex-wrap gap-4 mt-4 mb-6 w-full justify-start">
         <img

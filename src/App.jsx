@@ -79,11 +79,11 @@ const App = () => {
   // Schermata di caricamento
   if (loading) {
     return (
-      <div className="bg-black text-[#c5003c] w-screen h-screen flex items-center justify-center text-center px-4">
+      <div className="bg-amber w-screen h-screen flex items-center justify-center text-center px-4">
         <div className="scanlines"></div>
-        <div className="terminal-glow animate-flicker font-medium" style={{ fontFamily: '"VT323", font-mono' }}>
-          <p className="text-3xl">Loading terminal...</p>
-          <p className="mt-2 text-2xl text-[#c5003c]">
+        <div className="animate-flicker font-medium" style={{ fontFamily: '"Rajdhani", monospace' }}>
+          <p className="text-amber-medium text-3xl">Loading terminal...</p>
+          <p className="text-amber-medium mt-2 text-2xl text-amber-light">
             Press <strong>help</strong> to see the commands.
           </p>
         </div>
@@ -93,24 +93,24 @@ const App = () => {
 
   return (
     <div
-      className="bg-black text-[#c5003c] font-medium text-2xl w-screen min-h-[100dvh] flex relative overflow-hidden"
-      style={{ fontFamily: '"VT323", font-mono' }}
+      className="bg-amber font-medium text-2xl w-screen min-h-[100dvh] flex relative overflow-hidden"
+      style={{ fontFamily: '"Rajdhani", monospace' }}
       onClick={() => inputRef.current?.focus()}
     >
       <div className="scanlines"></div>
 
       {/* Terminale scrollabile */}
-      <div className="terminal-glow flex-1 flex flex-col items-center pt-4 pb-32 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10">
+      <div className="flex-1 flex flex-col items-center pt-4 pb-32 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10">
         <div className="w-full max-w-4xl">
           {history.map((item, index) => (
             <div key={index} className="mb-2 w-full">
-              {item.cmd && <p className="text-left">&gt;&gt;&gt; {item.cmd}</p>}
-              <div className="text-left">{item.output}</div>
+              {item.cmd && <p className="text-amber-medium text-left">&gt;&gt;&gt; {item.cmd}</p>}
+              <div className="text-amber-medium text-left">{item.output}</div>
             </div>
           ))}
 
           {/* Prompt */}
-          <div className="terminal-glow flex items-center mt-2 w-full animate-flicker">
+          <div className="text-amber-medium flex items-center mt-2 w-full animate-flicker">
             <p className="mr-2.5">&gt;&gt;&gt; </p>
             <input
               ref={inputRef}
@@ -118,7 +118,7 @@ const App = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="terminal-glow bg-transparent flex-1 outline-none border-b-2 text-[#c5003c] caret-[#c5003c] text-2xl"
+              className="bg-transparent flex-1 outline-none border-b-2 text-amber-medium caret-[#FFA500] text-2xl"
             />
           </div>
           <div ref={historyEndRef}></div>

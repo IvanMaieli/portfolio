@@ -85,15 +85,6 @@ html, body {
   }
 }
 
-/* Effetto leggero glow + flicker */
-.terminal-glow {
-  text-shadow:
-    0 0 1px #c5003c,
-    0 0 2px #c5003c,
-    0 0 3px rgb(197, 0, 60, 0.5);
-  animation: flicker 1.5s infinite;
-}
-
 @keyframes flicker {
   0%, 18%, 22%, 25%, 53%, 57%, 100% {
     opacity: 1;
@@ -106,8 +97,36 @@ html, body {
   }
 }
 
+/* Sfondo */
+.bg-amber {
+    background-color: #0A0A0A; /* Nero CRT */
+}
 
-.error-text {
+/* Cursore / selezioni */
+.text-amber-medium {
+    color: #FF8C00; /* Ambra scuro */
+    text-shadow:
+    0 0 1px #FF8C00,
+    0 0 2px #df7b00,
+    0 0 3px rgba(255, 140, 0, 0.5);
+  animation: flicker 1.5s infinite;
+}
+
+
+.text-celestial {
   color: #55ead4;
-  text-shadow: 0 0 2px #55ead4, 0 0 6px rgba(85, 234, 212, 0.5)
+  text-shadow:
+  0 0 1px #55ead4,
+  0 0 2px #43b8a6,
+  0 0 3px rgba(85, 234, 212, 0.5);
+  animation: flicker 1.5s infinite;
+}
+
+.text-celestial-dark {
+  color: #399a8d;
+  text-shadow:
+  0 0 1px #399a8d,
+  0 0 2px #276c63,
+  0 0 3px #399a8d83;
+  animation: flicker 1.5s infinite;
 }

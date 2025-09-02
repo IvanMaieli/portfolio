@@ -11,7 +11,7 @@ export default function Contacts() {
       <ul className="list-none pl-6">
         {content.map((cont, index) => (
           <li key={index}>
-            <span className="text-[#55ead4]">- {cont.title}</span> <br /> <a className="underline" href={cont.link}>{cont.text}</a>
+            <span className="text-celestial-dark">- {cont.title}</span> <br /> <a className="text-celestial underline" href={cont.link}>{cont.text}</a>
           </li>
         ))}
       </ul>

@@ -10,7 +10,7 @@ const Projects = () => {
       <ul className="list-none pl-6">
         {projectList.map((proj, index) => (
           <li key={index}>
-            <span className="text-[#55ead4]">- {proj.name}</span> <br /> {proj.desc}
+            <span className="text-celestial-dark">- {proj.name}</span> <br /> <span className="text-celestial">{proj.desc}</span>
           </li>
         ))}
       </ul>
