@@ -111,7 +111,7 @@ const App = () => {
 
           {/* Prompt */}
           <div className="terminal-glow flex items-center mt-2 w-full animate-flicker">
-            <span className="mr-2">&gt;&gt;&gt;</span>
+            <p className="mr-2">&gt;&gt;&gt; </p>
             <input
               ref={inputRef}
               type="text"
