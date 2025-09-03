@@ -149,7 +149,7 @@ const App = () => {
           {history.map((item, index) => (
             <div key={index} className="mb-2 w-full">
               {item.cmd && (
-                <p className="text-amber-dark text-left">root@ivan:~# <span className="text-amber-medium">{item.cmd}</span></p>
+                <p className="text-amber-medium text-left">root@ivan:~# <span className="text-amber-medium">{item.cmd}</span></p>
               )}
               <div className="text-amber-medium text-left">{item.output}</div>
             </div>
