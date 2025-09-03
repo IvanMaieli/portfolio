@@ -130,7 +130,7 @@ const App = () => {
       <div className="scanlines"></div>
 
       {/* Terminale scrollabile */}
-      <div className="flex-1 flex flex-col items-center pt-4 pb-32 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10">
+      <div className="flex-1 flex flex-col items-center pt-8 pb-32 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10">
         <div className="w-full max-w-4xl">
           {history.map((item, index) => (
             <div key={index} className="mb-2 w-full">
@@ -155,15 +155,21 @@ const App = () => {
               />
             </div>
 
-            {/* Suggerimenti: SOLO alias */}
-            {suggestions.length > 0 && (
-              <div className="mt-2 flex flex-wrap gap-4">
-                {suggestions.map((s, idx) => (
-                  <span key={idx} className="text-celestial-dark text-sm">
-                    {s.alias[0]}
-                  </span>
-                ))}
+            {/* Suggerimenti alias */}
+            {input.trim() && suggestions.length === 0 ? (
+              <div className="mt-2 pl-6 error-text text-sm">
+                Command does not exist
               </div>
+            ) : (
+              suggestions.length > 0 && (
+                <div className="mt-2 flex flex-wrap gap-4 pl-6">
+                  {suggestions.map((s, idx) => (
+                    <span key={idx} className="text-celestial-dark text-sm">
+                      {s.alias[0]}
+                    </span>
+                  ))}
+                </div>
+              )
             )}
           </div>
 
