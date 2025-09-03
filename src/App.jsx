@@ -11,28 +11,33 @@ const COMPONENT_MAP = {
   Projects,
   Contacts,
   Blog,
-  Help
+  Help,
 };
 
 const App = () => {
   const [history, setHistory] = useState([]);
   const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(true); // stato caricamento
+  const [loading, setLoading] = useState(true);
   const inputRef = useRef(null);
   const historyEndRef = useRef(null);
 
   useEffect(() => {
-    // focus input
     inputRef.current?.focus();
   }, [history]);
 
   useEffect(() => {
-    // simuliamo un caricamento iniziale di 2 secondi
     const timer = setTimeout(() => {
       setLoading(false);
       setHistory((prev) => [
         ...prev,
-        { cmd: "", output: <span>Welcome to the terminal! Type <strong>help</strong> to see the commands.</span> }
+        {
+          cmd: "",
+          output: (
+            <span>
+              Welcome to the terminal! Type <strong>help</strong> to see the commands.
+            </span>
+          ),
+        },
       ]);
     }, 2000);
     return () => clearTimeout(timer);
@@ -41,10 +46,8 @@ const App = () => {
   const handleCommand = (cmd) => {
     const normalized = cmd.toLowerCase();
 
-    const command = commandsData.find(
-      (c) =>
-        c.key === normalized ||
-        c.alias.map((a) => a.toLowerCase()).includes(normalized)
+    const command = commandsData.find((c) =>
+      c.alias.some((a) => a.toLowerCase() === normalized)
     );
 
     let outputComponent;
@@ -53,8 +56,17 @@ const App = () => {
       outputComponent = (
         <span className="error-text">Command not found: {cmd}</span>
       );
-    } else if (command.key === "0") {
-      setHistory([{ cmd: "", output: <span>Welcome to the terminal! Type <strong>help</strong> to see the commands.</span> }]);
+    } else if (command.alias.includes("clear")) {
+      setHistory([
+        {
+          cmd: "",
+          output: (
+            <span>
+              Welcome to the terminal! Type <strong>help</strong> to see the commands.
+            </span>
+          ),
+        },
+      ]);
       setInput("");
       return;
     } else {
@@ -70,9 +82,24 @@ const App = () => {
     }, 50);
   };
 
+  const getSuggestions = () => {
+    const q = input.trim().toLowerCase();
+    if (!q) return commandsData;
+    return commandsData.filter((c) =>
+      c.alias.some((a) => a.toLowerCase().startsWith(q))
+    );
+  };
+
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && input.trim()) {
       handleCommand(input.trim());
+    } else if (e.key === "Tab") {
+      e.preventDefault();
+      const suggestions = getSuggestions();
+      if (suggestions.length > 0) {
+        // 🔥 autocomplete con il primo alias
+        setInput(suggestions[0].alias[0]);
+      }
     }
   };
 
@@ -81,7 +108,10 @@ const App = () => {
     return (
       <div className="bg-amber w-screen h-screen flex items-center justify-center text-center px-4">
         <div className="scanlines"></div>
-        <div className="animate-flicker font-medium" style={{ fontFamily: '"Rajdhani", monospace' }}>
+        <div
+          className="animate-flicker font-medium"
+          style={{ fontFamily: '"Rajdhani", monospace' }}
+        >
           <p className="text-amber-medium text-3xl">Loading terminal...</p>
           <p className="text-amber-medium mt-2 text-2xl text-amber-medium">
             Press <strong>help</strong> to see the commands.
@@ -90,6 +120,8 @@ const App = () => {
       </div>
     );
   }
+
+  const suggestions = getSuggestions();
 
   return (
     <div
@@ -103,23 +135,39 @@ const App = () => {
         <div className="w-full max-w-4xl">
           {history.map((item, index) => (
             <div key={index} className="mb-2 w-full">
-              {item.cmd && <p className="text-amber-medium text-left"># {item.cmd}</p>}
+              {item.cmd && (
+                <p className="text-amber-medium text-left"># {item.cmd}</p>
+              )}
               <div className="text-amber-medium text-left">{item.output}</div>
             </div>
           ))}
 
           {/* Prompt */}
-          <div className="text-amber-medium flex items-center mt-2 w-full animate-flicker">
-            <p className="mr-1.5">#</p>
-            <input
-              ref={inputRef}
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="bg-transparent flex-1 outline-none text-amber-medium caret-[#FF8C00] text-2xl"
-            />
+          <div className="text-amber-medium flex flex-col mt-2 w-full animate-flicker">
+            <div className="flex items-center">
+              <p className="mr-1.5">#</p>
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="bg-transparent flex-1 outline-none text-amber-medium caret-[#FF8C00] text-2xl"
+              />
+            </div>
+
+            {/* Suggerimenti: SOLO alias */}
+            {suggestions.length > 0 && (
+              <div className="mt-2 flex flex-wrap gap-4">
+                {suggestions.map((s, idx) => (
+                  <span key={idx} className="text-celestial-dark text-sm">
+                    {s.alias[0]}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
+
           <div ref={historyEndRef}></div>
         </div>
       </div>
