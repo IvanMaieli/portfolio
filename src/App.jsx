@@ -149,7 +149,7 @@ const App = () => {
           {history.map((item, index) => (
             <div key={index} className="mb-2 w-full">
               {item.cmd && (
-                <p className="text-amber-medium text-left"># {item.cmd}</p>
+                <p className="text-amber-medium text-left">root@ivan:~# {item.cmd}</p>
               )}
               <div className="text-amber-medium text-left">{item.output}</div>
             </div>
@@ -158,7 +158,7 @@ const App = () => {
           {/* Prompt */}
           <div className="text-amber-medium flex flex-col mt-2 w-full animate-flicker">
             <div className="flex items-center">
-              <p className="mr-1.5">#</p>
+              <p className="mr-1.5">root@ivan:~#</p>
               <input
                 ref={inputRef}
                 type="text"
