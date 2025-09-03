@@ -143,17 +143,28 @@ const App = () => {
 
           {/* Prompt */}
           <div className="text-amber-medium flex flex-col mt-2 w-full animate-flicker">
-            <div className="flex items-center">
-              <p className="mr-1.5">#</p>
+          <div
+            className="flex items-center w-full text-2xl text-amber-medium"
+            onClick={() => inputRef.current?.focus()} // focus cliccando sul testo
+          >
+            <p className="mr-1.5">#</p>
+            <div className="flex items-center flex-1">
+              {/* testo visibile + cursore _ */}
+              <span>{input}</span>
+              <span className="animate-blink">_</span>
+              {/* input reale nascosto ma funzionante */}
               <input
                 ref={inputRef}
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="bg-transparent flex-1 outline-none text-amber-medium caret-[#FF8C00] text-2xl"
+                className="absolute opacity-0 pointer-events-none w-full"
+                autoFocus
               />
             </div>
+          </div>
+
 
             {/* Suggerimenti alias */}
             {input.trim() && suggestions.length === 0 ? (

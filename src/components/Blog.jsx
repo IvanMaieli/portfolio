@@ -13,7 +13,7 @@ const Blog = () => {
       {posts.map((post, i) => (
         <div key={i} className="border-l-2 text-celestial pl-2">
           <h3
-            className="text-amber-medium font-bold cursor-pointer hover:underline"
+            className="text-amber-medium cursor-pointer hover:underline"
             onClick={() => togglePost(i)}
           >
             {post.title}
