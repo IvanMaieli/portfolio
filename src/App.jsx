@@ -144,7 +144,7 @@ const App = () => {
       <div className="scanlines"></div>
 
       {/* Terminale scrollabile */}
-      <div className="flex-1 flex flex-col items-center pt-4 pb-32 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10">
+      <div className="flex-1 flex flex-col items-center pt-0 pb-32 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10">
         <div className="w-full max-w-4xl">
           {history.map((item, index) => (
             <div key={index} className="mb-2 w-full">
