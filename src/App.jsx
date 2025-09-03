@@ -14,8 +14,7 @@ const COMPONENT_MAP = {
   Help,
 };
 
-  const art = `
-   __ _ __  _   _  __
+  const art = `   __ _ __  _   _  __
   / //// /.' \ / |/ /
  / /| V // o // || / 
 /_/ |_,'/_n_//_/|_/  `;
@@ -145,7 +144,7 @@ const App = () => {
       <div className="scanlines"></div>
 
       {/* Terminale scrollabile */}
-      <div className="flex-1 flex flex-col items-center pt-0 pb-32 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10">
+      <div className="flex-1 flex flex-col items-center pt-8 pb-32 px-4 sm:px-6 overflow-y-auto overflow-x-hidden z-10">
         <div className="w-full max-w-4xl">
           {history.map((item, index) => (
             <div key={index} className="mb-2 w-full">
