@@ -1,22 +1,5 @@
 import { useState } from "react";
-
-const posts = [
-  {
-    title: "Introduzione al Systems Programming in Rust",
-    date: "2025-06-10",
-    content: "Oggi parliamo di come Rust possa essere usato per sviluppare sistemi sicuri e performanti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-  },
-  {
-    title: "Come funziona un terminale hacker-style",
-    date: "2025-06-01",
-    content: "Ho deciso di creare un portfolio ispirato ai terminali, con effetti glitch e digitazione. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-  },
-  {
-    title: "AI e sistemi embedded: prospettive future",
-    date: "2025-05-25",
-    content: "L'integrazione dell'intelligenza artificiale in sistemi embedded sta cambiando il modo in cui sviluppiamo dispositivi. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-  }
-];
+import posts from "../contents/blogPosts"; // importa i post dal file separato
 
 const Blog = () => {
   const [expandedPost, setExpandedPost] = useState(null);
