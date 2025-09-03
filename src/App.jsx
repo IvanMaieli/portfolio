@@ -43,11 +43,12 @@ const App = () => {
               <span style={{ whiteSpace: "pre", fontFamily: "monospace" }}>
                 {art}
               </span>
-              <br />
-              <br />
+              <br /> <br />
               <span>Welcome to Ivan's terminal! <br />
               Type <strong>help</strong> to expand the commands.
               </span>
+              <br />
+              <br />
             </span>
           ),
         },
