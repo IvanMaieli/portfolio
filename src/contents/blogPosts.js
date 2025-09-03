@@ -2,7 +2,7 @@
 const posts = [
   {
     title: "This website",
-    date: Date.now().toLocaleString(),
+    date: new Date().toISOString().split("T")[0],
     content: 
     `
       I built this website using React and Tailwind CSS. 
