@@ -11,7 +11,7 @@ const Blog = () => {
   return (
     <div className="space-y-4">
       {posts.map((post, i) => (
-        <div key={i} className="border-l-2 text-celestial pl-2">
+        <div key={i} className="border-l-2 text-celestial pl-2 mt-4">
           <h3
             className="text-amber-medium cursor-pointer hover:underline"
             onClick={() => togglePost(i)}
