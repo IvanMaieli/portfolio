@@ -14,6 +14,13 @@ const COMPONENT_MAP = {
   Help,
 };
 
+  const art = `██╗██╗   ██╗ █████╗ ███╗   ██╗
+██║██║   ██║██╔══██╗████╗  ██║
+██║██║   ██║███████║██╔██╗ ██║
+██║╚██╗ ██╔╝██╔══██║██║╚██╗██║
+██║ ╚████╔╝ ██║  ██║██║ ╚████║
+╚═╝  ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═══╝`;
+
 const App = () => {
   const [history, setHistory] = useState([]);
   const [input, setInput] = useState("");
@@ -34,7 +41,12 @@ const App = () => {
           cmd: "",
           output: (
             <span>
-              Welcome to Ivan's terminal! Type <strong>help</strong> to expand the commands.
+              <span style={{ whiteSpace: "pre", fontFamily: "monospace" }}>
+                {art}
+              </span>
+              <br />
+              <br />
+              <span>Welcome to Ivan's terminal! Type <strong>help</strong> to expand the commands.</span>
             </span>
           ),
         },
