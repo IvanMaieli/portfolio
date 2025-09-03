@@ -34,7 +34,7 @@ const App = () => {
           cmd: "",
           output: (
             <span>
-              Welcome to the terminal! Type <strong>help</strong> to see the commands.
+              Welcome to Ivan's terminal! Type <strong>help</strong> to expand the commands.
             </span>
           ),
         },
@@ -62,7 +62,7 @@ const App = () => {
           cmd: "",
           output: (
             <span>
-              Welcome to the terminal! Type <strong>help</strong> to see the commands.
+              Welcome to Ivan's terminal... Type <strong>help</strong> to expand the commands.
             </span>
           ),
         },
@@ -97,7 +97,6 @@ const App = () => {
       e.preventDefault();
       const suggestions = getSuggestions();
       if (suggestions.length > 0) {
-        // 🔥 autocomplete con il primo alias
         setInput(suggestions[0].alias[0]);
       }
     }
@@ -114,7 +113,7 @@ const App = () => {
         >
           <p className="text-amber-medium text-3xl">Loading terminal...</p>
           <p className="text-amber-medium mt-2 text-2xl text-amber-medium">
-            Press <strong>help</strong> to see the commands.
+            Press <strong>help</strong> to expand the commands.
           </p>
         </div>
       </div>
